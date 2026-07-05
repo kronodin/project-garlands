@@ -83,11 +83,20 @@ function renderCatalog() {
   const empty = document.getElementById("emptyState");
   if (!grid) return;
 
+  const params = new URLSearchParams(window.location.search || "");
+  const urlCat = params.get("category");
   let category = "";
   let search = "";
   const catEl = document.getElementById("categoryFilter");
   const searchEl = document.getElementById("searchInput");
-  if (catEl) category = catEl.value || "all";
+
+  if (urlCat && document.querySelector(`#categoryFilter option[value="${urlCat}"]`)) {
+    if (catEl) catEl.value = urlCat;
+    category = urlCat;
+  } else if (catEl) {
+    category = catEl.value || "all";
+  }
+
   if (searchEl) search = (searchEl.value || "").trim().toLowerCase();
 
   const items = staticProducts.filter((p) => {
