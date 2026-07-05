@@ -484,6 +484,54 @@ a { color: inherit; text-decoration: none; }
 .pill.danger { background: #fee2e2; color: #7f1d1d; }
 .pill.pending { background: #e9f5ef; color: #0f4a2a; }
 
+#bulletinBoard {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0 6px;
+}
+.bulletin {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+.bulletin--sticky {
+  border-left: 4px solid #0f4a2a;
+}
+.bulletin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.admin-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.admin-form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.admin-form input,
+.admin-form textarea {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #143024;
+}
+.admin-form input[type="datetime-local"] {
+  padding: 8px 10px;
+}
+.admin-section + .admin-section {
+  margin-top: 36px;
+}
+
 @media (max-width: 860px) {
   .admin-grid { grid-template-columns: 1fr; }
 }

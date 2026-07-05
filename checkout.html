@@ -4,7 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Checkout — Garlands Wholesale</title>
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="/project-garlands/css/style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <header class="topbar">
@@ -18,66 +20,56 @@
       <a href="shop.html">Shop</a>
       <a href="account.html">Account</a>
       <a href="login.html" class="btn small">Sign in</a>
-      <button class="cart-toggle" id="cartToggle" aria-label="Open cart">Cart <span class="badge" id="cartCount">0</span></button>
     </nav>
   </div>
 </header>
 
-<div class="cart-drawer" id="cartDrawer" aria-hidden="true">
-  <div class="cart-header">
-    <h3>Your Cart</h3>
-    <button class="icon-btn" id="cartClose" aria-label="Close cart">✕</button>
-  </div>
-  <div id="cartItems" class="cart-items">Cart is empty.</div>
-  <div class="cart-footer">
-    <div class="cart-total">Total <span id="cartTotal">0.00</span></div>
-    <a class="btn" href="checkout.html">Checkout</a>
-  </div>
-</div>
-<div class="overlay" id="overlay"></div>
-
 <main class="container main">
-  <section class="checkout">
-    <div class="checkout-layout">
-      <div>
-        <h2>Checkout</h2>
-        <form id="checkoutForm" class="form">
-          <label>Business Name</label>
-          <input name="name" placeholder="Your business name" required />
-          <label>WhatsApp Number</label>
-          <input name="whatsapp" placeholder="+1 876 000 0000" required />
-          <label>Delivery Method</label>
-          <select name="delivery">
-            <option value="pickup">Pickup — Garlands St, St James</option>
-            <option value="parish">Parish delivery</option>
-            <option value="corporate">Corporate route</option>
-          </select>
-          <label>Address / Notes</label>
-          <textarea name="address" rows="3" placeholder="Garlands St, St James or loading dock notes..." required></textarea>
-          <button class="btn" type="submit">Send Order via WhatsApp</button>
-          <p class="form-note" id="checkoutNote"></p>
-        </form>
-      </div>
-      <div class="order-summary">
-        <h3>Order Summary</h3>
-        <div id="orderItems" class="order-items">Your cart is empty.</div>
-        <div class="order-total">Total <span id="orderTotal">0.00</span></div>
-      </div>
+
+  <section class="checkout-layout">
+    <div>
+      <h2>Checkout</h2>
+      <form id="checkoutForm" class="form">
+        <label>Business Name</label>
+        <input name="name" placeholder="Your business name" required />
+        <label>WhatsApp Number</label>
+        <input name="whatsapp" placeholder="+1 876 000 0000" required />
+        <label>Delivery Method</label>
+        <select name="delivery">
+          <option value="pickup">Pickup — Garlands St, St James</option>
+          <option value="parish">Parish delivery</option>
+          <option value="corporate">Corporate route</option>
+        </select>
+        <label>Address / Notes</label>
+        <textarea name="address" rows="3" placeholder="Garlands St, St James or loading dock notes..." required></textarea>
+        <button class="btn" type="submit">Send Order via WhatsApp</button>
+        <p class="form-note" id="checkoutNote"></p>
+      </form>
     </div>
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+      <div id="orderItems" class="order-items">Your cart is empty.</div>
+      <div class="order-total">Total <span id="orderTotal">0.00</span></div>
+    </div>
+  </section>
+
+  <section class="bulletins">
+    <h2>Bulletin Board</h2>
+    <p id="bulletinEmpty" class="empty-state">No current announcements.</p>
+    <div id="bulletinBoard"></div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
     <div><strong>Garlands Wholesale</strong><div class="muted">Serving retailers, hotels, and institutions across Jamaica.</div></div>
-    <div><strong>Shop</strong><div class="muted"><a href="shop.html?category=beverages">Beverages</a></div><div class="muted"><a href="shop.html?category=snacks">Snacks</a></div></div>
+    <div><strong>Shop</strong><div class="muted"><a href="shop.html?category=beverages">Beverages</a></div><div class="muted"><a href="shop.html?category=pantry">Snacks</a></div></div>
     <div><strong>Account</strong><div class="muted"><a href="login.html">Sign in</a></div><div class="muted"><a href="account.html">Orders</a></div></div>
-    <div><strong>Contact</strong><div class="muted">Kingston, Jamaica</div><div class="muted">WhatsApp order line active</div></div>
+    <div><strong>Contact</strong><div class="muted">Garlands Street, St James, Jamaica</div><div class="muted">WhatsApp order line active</div></div>
   </div>
   <div class="container muted small">© <span id="year"></span> Garlands Wholesale. Demo pricing only.</div>
 </footer>
 
-<script src="js/shop.js"></script>
 <script>
 const WHATSAPP_NUMBER = "15550100";
 function fmt(n){ return "$" + n.toFixed(2); }
@@ -108,6 +100,10 @@ document.getElementById('checkoutForm').addEventListener('submit', (e)=>{
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script src="/project-garlands/js/site.js"></script>
+<script>
+renderBulletins();
 </script>
 </body>
 </html>

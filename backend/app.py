@@ -52,6 +52,15 @@ def init_db():
             last_order_at TIMESTAMP,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
+        CREATE TABLE IF NOT EXISTS bulletins (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            body TEXT NOT NULL,
+            starts_at TIMESTAMP,
+            ends_at TIMESTAMP,
+            sticky INTEGER DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
         """
     )
     # Migrate legacy schema if needed
@@ -168,6 +177,47 @@ def admin_customers():
     rows = conn.execute("SELECT * FROM customers ORDER BY last_order_at DESC NULLS LAST, created_at DESC").fetchall()
     conn.close()
     return jsonify([dict(r) for r in rows])
+
+
+@app.route("/api/bulletins")
+def api_bulletins():
+    now = datetime.utcnow().isoformat()
+    conn = get_db()
+    rows = conn.execute(
+        "SELECT * FROM bulletins WHERE (starts_at IS NULL OR starts_at <= ?) AND (ends_at IS NULL OR ends_at >= ?) ORDER BY sticky DESC, created_at DESC",
+        (now, now),
+    ).fetchall()
+    conn.close()
+    return jsonify([dict(r) for r in rows])
+
+
+@app.route("/api/admin/bulletins", methods=["POST"])
+def admin_bulletins_create():
+    data = request.get_json(force=True, silent=True) or {}
+    title = data.get("title", "").strip()
+    body = data.get("body", "").strip()
+    sticky = 1 if data.get("sticky") else 0
+    starts_at = data.get("starts_at")
+    ends_at = data.get("ends_at")
+    if not title or not body:
+        return jsonify({"ok": False, "error": "missing fields"}), 400
+    conn = get_db()
+    conn.execute(
+        "INSERT INTO bulletins (title, body, starts_at, ends_at, sticky) VALUES (?, ?, ?, ?, ?)",
+        (title, body, starts_at, ends_at, sticky),
+    )
+    conn.commit()
+    conn.close()
+    return jsonify({"ok": True})
+
+
+@app.route("/api/admin/bulletins/<int:bulletin_id>", methods=["DELETE"])
+def admin_bulletins_delete(bulletin_id):
+    conn = get_db()
+    conn.execute("DELETE FROM bulletins WHERE id = ?", (bulletin_id,))
+    conn.commit()
+    conn.close()
+    return jsonify({"ok": True})
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Shop — Garlands Wholesale</title>
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="/project-garlands/css/style.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -51,11 +51,19 @@
         <option value="beverages">Beverages</option>
         <option value="household">Household</option>
         <option value="personal-care">Personal Care</option>
+        <option value="candy">Candy</option>
+        <option value="liquor">Liquor</option>
       </select>
       <input id="searchInput" placeholder="Search products..." oninput="renderCatalog()" />
     </div>
     <div id="productGrid" class="product-grid"></div>
     <div id="emptyState" class="empty-state hidden">No products match.</div>
+  </section>
+
+  <section class="bulletins">
+    <h2>Bulletin Board</h2>
+    <p id="bulletinEmpty" class="empty-state">No current announcements.</p>
+    <div id="bulletinBoard"></div>
   </section>
 </main>
 
