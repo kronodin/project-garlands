@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Checkout — Garlands Wholesale</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="logo" href="index.html">
+      <img src="assets/logo.svg" alt="Garlands Wholesale" class="logo-img" />
+      <span class="logo-text">Garlands Wholesale</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="account.html">Account</a>
+      <a href="login.html" class="btn small">Sign in</a>
+      <button class="cart-toggle" id="cartToggle" aria-label="Open cart">Cart <span class="badge" id="cartCount">0</span></button>
+    </nav>
+  </div>
+</header>
+
+<div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="icon-btn" id="cartClose" aria-label="Close cart">✕</button>
+  </div>
+  <div id="cartItems" class="cart-items">Cart is empty.</div>
+  <div class="cart-footer">
+    <div class="cart-total">Total <span id="cartTotal">0.00</span></div>
+    <a class="btn" href="checkout.html">Checkout</a>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<main class="container main">
+  <section class="checkout">
+    <div class="checkout-layout">
+      <div>
+        <h2>Checkout</h2>
+        <form id="checkoutForm" class="form">
+          <label>Business Name</label>
+          <input name="name" placeholder="Your business name" required />
+          <label>WhatsApp Number</label>
+          <input name="whatsapp" placeholder="+1 876 000 0000" required />
+          <label>Delivery Method</label>
+          <select name="delivery">
+            <option value="pickup">Pickup — Kingston</option>
+            <option value="parish">Parish delivery</option>
+            <option value="corporate">Corporate route</option>
+          </select>
+          <label>Address / Notes</label>
+          <textarea name="address" rows="3" placeholder="Route, parish, loading dock notes..." required></textarea>
+          <button class="btn" type="submit">Send Order via WhatsApp</button>
+          <p class="form-note" id="checkoutNote"></p>
+        </form>
+      </div>
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <div id="orderItems" class="order-items">Your cart is empty.</div>
+        <div class="order-total">Total <span id="orderTotal">0.00</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div><strong>Garlands Wholesale</strong><div class="muted">Serving retailers, hotels, and institutions across Jamaica.</div></div>
+    <div><strong>Shop</strong><div class="muted"><a href="shop.html?category=beverages">Beverages</a></div><div class="muted"><a href="shop.html?category=snacks">Snacks</a></div></div>
+    <div><strong>Account</strong><div class="muted"><a href="login.html">Sign in</a></div><div class="muted"><a href="account.html">Orders</a></div></div>
+    <div><strong>Contact</strong><div class="muted">Kingston, Jamaica</div><div class="muted">WhatsApp order line active</div></div>
+  </div>
+  <div class="container muted small">© <span id="year"></span> Garlands Wholesale. Demo pricing only.</div>
+</footer>
+
+<script src="js/shop.js"></script>
+<script>
+const WHATSAPP_NUMBER = "15550100";
+function fmt(n){ return "$" + n.toFixed(2); }
+
+const orderItems = document.getElementById('orderItems');
+const orderTotal = document.getElementById('orderTotal');
+function renderSummary() {
+  if (!window.cart || !window.cart.length) {
+    orderItems.textContent = 'Your cart is empty.';
+    orderTotal.textContent = '0.00';
+    return;
+  }
+  orderItems.innerHTML = window.cart.map(c => `<div class="order-line"><div><div><strong>${c.name}</strong></div><div class="muted small">${c.qty} x ${fmt(c.price)}</div></div><div>${fmt(c.price * c.qty)}</div></div>`).join('');
+  const total = window.cart.reduce((s,c)=> s + c.price * c.qty, 0);
+  orderTotal.textContent = fmt(total);
+}
+
+setInterval(renderSummary, 400);
+
+document.getElementById('checkoutForm').addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const f = Object.fromEntries(new FormData(e.target).entries());
+  const lines = (window.cart || []).map(c => `• ${c.qty}x ${c.name} — ${fmt(c.price * c.qty)}`);
+  const summary = ['*New Wholesale Order*', '', `Name: ${f.name}`, `WhatsApp: ${f.whatsapp}`, `Delivery: ${f.delivery}`, `Address: ${f.address}`, '', 'Items:', ...lines, '', `Total: ${fmt((window.cart || []).reduce((s,c)=> s + c.price * c.qty, 0))}`].join('\n');
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(summary)}`,'_blank');
+  document.getElementById('checkoutNote').textContent = 'Opening WhatsApp...';
+  document.getElementById('checkoutNote').style.color = '#14532d';
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

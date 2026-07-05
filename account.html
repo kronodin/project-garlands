@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Account — Garlands Wholesale</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="logo" href="index.html">
+      <img src="assets/logo.svg" alt="Garlands Wholesale" class="logo-img" />
+      <span class="logo-text">Garlands Wholesale</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="account.html" class="active">Account</a>
+      <a href="login.html" class="btn small">Sign in</a>
+      <button class="cart-toggle" id="cartToggle" aria-label="Open cart">Cart <span class="badge" id="cartCount">0</span></button>
+    </nav>
+  </div>
+</header>
+
+<div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="icon-btn" id="cartClose" aria-label="Close cart">✕</button>
+  </div>
+  <div id="cartItems" class="cart-items">Cart is empty.</div>
+  <div class="cart-footer">
+    <div class="cart-total">Total <span id="cartTotal">0.00</span></div>
+    <a class="btn" href="checkout.html">Checkout</a>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<main class="container main">
+  <section class="account">
+    <h2>Your Account</h2>
+    <div class="account-grid">
+      <div>
+        <h3>Profile</h3>
+        <form id="profileForm" class="form">
+          <label>Business Name</label>
+          <input value="Demo Business Ltd" />
+          <label>Email</label>
+          <input value="demo@business.com" type="email" />
+          <label>Phone</label>
+          <input value="+1 876 000 0000" />
+          <label>Delivery Address</label>
+          <textarea rows="3">Kingston, Jamaica</textarea>
+          <button class="btn" type="submit">Save Changes</button>
+        </form>
+      </div>
+      <div>
+        <h3>Recent Orders</h3>
+        <div class="orders">
+          <div class="order">
+            <div><strong>#G-1001</strong><div class="muted small">Mar 12, 2026</div></div>
+            <div class="muted">3 items — $214.50</div>
+          </div>
+          <div class="order">
+            <div><strong>#G-998</strong><div class="muted small">Feb 28, 2026</div></div>
+            <div class="muted">7 items — $482.75</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:22px">Payment Methods</h3>
+        <div class="payment-note muted">Demo only. Add cards or bank details when backend is connected.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div><strong>Garlands Wholesale</strong><div class="muted">Serving retailers, hotels, and institutions across Jamaica.</div></div>
+    <div><strong>Shop</strong><div class="muted"><a href="shop.html?category=beverages">Beverages</a></div><div class="muted"><a href="shop.html?category=snacks">Snacks</a></div></div>
+    <div><strong>Account</strong><div class="muted"><a href="login.html">Sign in</a></div><div class="muted"><a href="account.html">Orders</a></div></div>
+    <div><strong>Contact</strong><div class="muted">Kingston, Jamaica</div><div class="muted">WhatsApp order line active</div></div>
+  </div>
+  <div class="container muted small">© <span id="year"></span> Garlands Wholesale. Demo pricing only.</div>
+</footer>
+
+<script>
+document.getElementById('profileForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const note = document.createElement('p');
+  note.className = 'muted small';
+  note.style.color = '#166534';
+  note.textContent = 'Profile saved locally. Connect a backend to persist.';
+  e.target.appendChild(note);
+});
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

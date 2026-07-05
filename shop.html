@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shop — Garlands Wholesale</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="logo" href="index.html">
+      <img src="assets/logo.svg" alt="Garlands Wholesale" class="logo-img" />
+      <span class="logo-text">Garlands Wholesale</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="account.html">Account</a>
+      <a href="login.html" class="btn small">Sign in</a>
+      <button class="cart-toggle" id="cartToggle" aria-label="Open cart">Cart <span class="badge" id="cartCount">0</span></button>
+    </nav>
+  </div>
+</header>
+
+<div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="icon-btn" id="cartClose" aria-label="Close cart">✕</button>
+  </div>
+  <div id="cartItems" class="cart-items">Cart is empty.</div>
+  <div class="cart-footer">
+    <div class="cart-total">Total <span id="cartTotal">0.00</span></div>
+    <a class="btn" href="checkout.html">Checkout</a>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<main class="container main">
+  <section class="shop">
+    <div class="shop-toolbar">
+      <select id="categoryFilter" onchange="renderCatalog()">
+        <option value="all">All categories</option>
+        <option value="beverages">Beverages</option>
+        <option value="snacks">Snacks & Sweets</option>
+        <option value="household">Household</option>
+        <option value="personal-care">Personal Care</option>
+        <option value="rice">Rice & Grains</option>
+        <option value="flour">Flour & Baking</option>
+        <option value="canned">Canned & Dry</option>
+        <option value="oils">Oils & Condiments</option>
+      </select>
+      <input id="searchInput" placeholder="Search products..." oninput="renderCatalog()" />
+    </div>
+    <div id="productGrid" class="product-grid"></div>
+    <div id="emptyState" class="empty-state hidden">No products match.</div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <strong>Garlands Wholesale</strong>
+      <div class="muted">Serving retailers, hotels, and institutions across Jamaica.</div>
+    </div>
+    <div>
+      <strong>Shop</strong>
+      <div class="muted"><a href="shop.html?category=beverages">Beverages</a></div>
+      <div class="muted"><a href="shop.html?category=snacks">Snacks</a></div>
+      <div class="muted"><a href="shop.html?category=household">Household</a></div>
+    </div>
+    <div>
+      <strong>Account</strong>
+      <div class="muted"><a href="login.html">Sign in</a></div>
+      <div class="muted"><a href="account.html">Orders</a></div>
+    </div>
+    <div>
+      <strong>Contact</strong>
+      <div class="muted">Kingston, Jamaica</div>
+      <div class="muted"> WhatsApp order line active</div>
+    </div>
+  </div>
+  <div class="container muted small">© <span id="year"></span> Garlands Wholesale. Demo pricing only.</div>
+</footer>
+
+<script src="js/shop.js"></script>
+</body>
+</html>

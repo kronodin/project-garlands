@@ -1,118 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Garlands — Wholesale Market</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Garlands Wholesale — Jamaica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="logo" href="#">🛒 Project Garlands</a>
-      <div class="nav-actions">
-        <button class="btn-icon" id="cartToggle" aria-label="Open cart">Cart <span id="cartCount">0</span></button>
+<header class="topbar">
+  <div class="container nav">
+    <a class="logo" href="index.html">
+      <img src="assets/logo.svg" alt="Garlands Wholesale" class="logo-img" />
+      <span class="logo-text">Garlands Wholesale</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="account.html">Account</a>
+      <a href="login.html" class="btn small">Sign in</a>
+      <button class="cart-toggle" id="cartToggle" aria-label="Open cart">
+        Cart <span class="badge" id="cartCount">0</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="icon-btn" id="cartClose" aria-label="Close cart">✕</button>
+  </div>
+  <div id="cartItems" class="cart-items">Cart is empty.</div>
+  <div class="cart-footer">
+    <div class="cart-total">Total <span id="cartTotal">0.00</span></div>
+    <a class="btn" href="checkout.html">Checkout</a>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<main class="container main">
+
+  <section class="hero">
+    <div>
+      <h1>Wholesale for Jamaica’s best retailers.</h1>
+      <p>Faster sourcing, reliable delivery, and better margins — from Kingston to Montego Bay and every parish in between.</p>
+      <div class="hero-actions">
+      <a class="btn" href="shop.html">Start Ordering</a>
+      <a class="btn outline" href="login.html">Create Account</a>
+      </div>
+      <div class="trust">
+        <span>Trusted by retailers across Jamaica</span>
       </div>
     </div>
-  </header>
-
-  <main>
-    <section class="section hero">
-      <div class="container hero-content">
-        <h1>Wholesale market, simplified.</h1>
-        <p>Bulk pricing, fast delivery, and direct order coordination via WhatsApp.</p>
-        <a class="cta" href="#catalog">Shop bulk catalog</a>
+    <div class="hero-media">
+      <div class="hero-card">
+        <div class="stat"><strong>24h</strong><span>Kingston / St Andrew delivery</span></div>
+        <div class="stat"><strong>3–5 days</strong><span>Parish delivery</span></div>
+        <div class="stat"><strong>Live</strong><span>WhatsApp order support</span></div>
       </div>
-    </section>
-
-    <section id="catalog" class="section catalog">
-      <div class="container">
-        <h2>Catalog</h2>
-        <div class="filters">
-          <select id="categoryFilter" onchange="renderCatalog()">
-            <option value="all">All categories</option>
-            <option value="produce">Produce</option>
-            <option value="pantry">Pantry</option>
-            <option value="beverages">Beverages</option>
-            <option value="household">Household</option>
-          </select>
-          <input id="searchInput" placeholder="Search products..." oninput="renderCatalog()" />
-        </div>
-        <div id="productGrid" class="product-grid"></div>
-      </div>
-    </section>
-
-    <section id="how" class="section how">
-      <div class="container">
-        <h2>How it works</h2>
-        <div class="steps">
-          <div class="step">
-            <h3>1. Shop</h3>
-            <p>Browse bulk items and add to cart.</p>
-          </div>
-          <div class="step">
-            <h3>2. Checkout</h3>
-            <p>Review order, choose delivery, and confirm.</p>
-          </div>
-          <div class="step">
-            <h3>3. WhatsApp confirm</h3>
-            <p>We send your order summary to WhatsApp for fast confirmation.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
-    <div class="cart-header">
-      <h3>Your Cart</h3>
-      <button class="btn-icon" id="cartClose" aria-label="Close cart">Close</button>
-    </div>
-    <div id="cartItems" class="cart-items">Cart is empty.</div>
-    <div class="cart-footer">
-      <div class="cart-total">Total: <span id="cartTotal">0.00</span></div>
-      <button class="cta" id="checkoutBtn" onclick="openCheckout()">Checkout</button>
-    </div>
-  </aside>
-
-  <div class="overlay" id="overlay"></div>
-
-  <section class="section checkout" id="checkoutSection">
-    <div class="container">
-      <h2>Checkout</h2>
-      <form id="checkoutForm" class="checkout-form">
-        <div class="field">
-          <label>Business / Contact name</label>
-          <input name="name" required />
-        </div>
-        <div class="field">
-          <label>WhatsApp number</label>
-          <input name="whatsapp" placeholder="+1 555 0123" required />
-        </div>
-        <div class="field">
-          <label>Delivery method</label>
-          <select name="delivery">
-            <option value="pickup">Pickup</option>
-            <option value="delivery">Local delivery</option>
-            <option value="shipping">Shipping</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Address / pickup location</label>
-          <textarea name="address" rows="2" required></textarea>
-        </div>
-        <button class="cta" type="submit">Send order via WhatsApp</button>
-        <p class="form-note" id="checkoutNote"></p>
-      </form>
     </div>
   </section>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year"></span> Project Garlands Wholesale. Prices exclude tax unless noted.</p>
+  <section class="categories">
+    <h2>Shop by category</h2>
+    <div class="cat-grid">
+      <a class="cat-card" href="shop.html?category=beverages">
+        <div class="cat-icon">🥤</div>
+        <div><strong>Beverages</strong><div class="muted">Water, juices, soft drinks</div></div>
+      </a>
+      <a class="cat-card" href="shop.html?category=snacks">
+        <div class="cat-icon">🍫</div>
+        <div><strong>Snacks & Sweets</strong><div class="muted">Chips, biscuits, confectionery</div></div>
+      </a>
+      <a class="cat-card" href="shop.html?category=household">
+        <div class="cat-icon">🧹</div>
+        <div><strong>Household</strong><div class="muted">Detergents, tissues, essentials</div></div>
+      </a>
+      <a class="cat-card" href="shop.html?category=personal-care">
+        <div class="cat-icon">🧴</div>
+        <div><strong>Personal Care</strong><div class="muted">Soaps, lotions, hygiene</div></div>
+      </a>
+      <a class="cat-card" href="shop.html?category=rice">
+        <div class="cat-icon">🍚</div>
+        <div><strong>Rice & Grains</strong><div class="muted">Local & imported bulk packs</div></div>
+      </a>
+      <a class="cat-card" href="shop.html?category=flour">
+        <div class="cat-icon">🌾</div>
+        <div><strong>Flour & Baking</strong><div class="muted">Wheat, instant mixes</div></div>
+      </a>
+      <a class="cat-card" href="shop.html?category=canned">
+        <div class="cat-icon">🥫</div>
+        <div><strong>Canned & Dry</strong><div class="muted">Beans, corned beef, pastas</div></div>
+      </a>
+      <a class="cat-card" href="shop.html?category=oils">
+        <div class="cat-icon">🫒</div>
+        <div><strong>Oils & Condiments</strong><div class="muted">Cooking oils, sauces, seasonings</div></div>
+      </a>
     </div>
-  </footer>
+  </section>
 
-  <script src="script.js"></script>
+  <section class="cta-banner">
+    <div>
+      <h2>Ready to stock your shelves?</h2>
+      <p class="muted">Open an account today for wholesale pricing and WhatsApp order support.</p>
+    </div>
+    <a class="btn" href="login.html">Get Started</a>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <strong>Garlands Wholesale</strong>
+      <div class="muted">Serving retailers, hotels, and institutions across Jamaica.</div>
+    </div>
+    <div>
+      <strong>Shop</strong>
+      <div class="muted"><a href="shop.html?category=beverages">Beverages</a></div>
+      <div class="muted"><a href="shop.html?category=snacks">Snacks</a></div>
+      <div class="muted"><a href="shop.html?category=household">Household</a></div>
+    </div>
+    <div>
+      <strong>Account</strong>
+      <div class="muted"><a href="login.html">Sign in</a></div>
+      <div class="muted"><a href="account.html">Orders</a></div>
+    </div>
+    <div>
+      <strong>Contact</strong>
+      <div class="muted">Kingston, Jamaica</div>
+      <div class="muted"> WhatsApp order line active</div>
+    </div>
+  </div>
+  <div class="container muted small">© <span id="year"></span> Garlands Wholesale. Demo pricing only.</div>
+</footer>
+
+<script src="js/shop.js"></script>
 </body>
 </html>

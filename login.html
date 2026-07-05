@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login — Garlands Wholesale</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="logo" href="index.html">
+      <img src="assets/logo.svg" alt="Garlands Wholesale" class="logo-img" />
+      <span class="logo-text">Garlands Wholesale</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="account.html">Account</a>
+      <a href="login.html" class="btn small active">Sign in</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container main">
+  <section class="auth">
+    <div class="auth-card">
+      <h2>Welcome back</h2>
+      <p class="muted">Sign in to access wholesale pricing and order history.</p>
+      <form id="loginForm" class="form">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="you@business.com" required />
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required />
+        <button class="btn" type="submit">Sign In</button>
+        <p class="muted small">New here? <a href="login.html?mode=register">Create an account</a></p>
+        <p class="form-note" id="loginNote"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <strong>Garlands Wholesale</strong>
+      <div class="muted">Serving retailers, hotels, and institutions across Jamaica.</div>
+    </div>
+    <div>
+      <strong>Shop</strong>
+      <div class="muted"><a href="shop.html?category=beverages">Beverages</a></div>
+      <div class="muted"><a href="shop.html?category=snacks">Snacks</a></div>
+      <div class="muted"><a href="shop.html?category=household">Household</a></div>
+    </div>
+    <div>
+      <strong>Account</strong>
+      <div class="muted"><a href="login.html">Sign in</a></div>
+      <div class="muted"><a href="account.html">Orders</a></div>
+    </div>
+    <div>
+      <strong>Contact</strong>
+      <div class="muted">Kingston, Jamaica</div>
+      <div class="muted"> WhatsApp order line active</div>
+    </div>
+  </div>
+  <div class="container muted small">© <span id="year"></span> Garlands Wholesale. Demo pricing only.</div>
+</footer>
+
+<script>
+const params = new URLSearchParams(location.search);
+if (params.get('mode') === 'register') {
+  document.getElementById('loginNote').textContent = 'Account creation is demo-only. Later this will open a registration flow.';
+  document.getElementById('loginNote').style.color = '#166534';
+}
+document.getElementById('loginForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  document.getElementById('loginNote').textContent = 'Login is demo-only. Connect a backend to enable accounts.';
+  document.getElementById('loginNote').style.color = '#5a264f';
+});
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
