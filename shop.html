@@ -5,19 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Shop — Garlands Wholesale</title>
 <link rel="stylesheet" href="css/style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <header class="topbar">
   <div class="container nav">
-    <a class="logo" href="index.html">
+    <a class="logo" href="/">
       <img src="assets/logo.svg" alt="Garlands Wholesale" class="logo-img" />
       <span class="logo-text">Garlands Wholesale</span>
     </a>
     <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="shop.html" class="active">Shop</a>
-      <a href="account.html">Account</a>
-      <a href="login.html" class="btn small">Sign in</a>
+      <a href="/">Home</a>
+      <a href="/shop.html" class="active">Shop</a>
+      <a href="/account.html">Account</a>
+      <a href="/login.html" class="btn small">Sign in</a>
       <button class="cart-toggle" id="cartToggle" aria-label="Open cart">Cart <span class="badge" id="cartCount">0</span></button>
     </nav>
   </div>
@@ -31,7 +33,7 @@
   <div id="cartItems" class="cart-items">Cart is empty.</div>
   <div class="cart-footer">
     <div class="cart-total">Total <span id="cartTotal">0.00</span></div>
-    <a class="btn" href="checkout.html">Checkout</a>
+    <a class="btn" href="/checkout.html">Checkout</a>
   </div>
 </div>
 <div class="overlay" id="overlay"></div>
@@ -41,14 +43,14 @@
     <div class="shop-toolbar">
       <select id="categoryFilter" onchange="renderCatalog()">
         <option value="all">All categories</option>
-        <option value="beverages">Beverages</option>
-        <option value="snacks">Snacks & Sweets</option>
-        <option value="household">Household</option>
-        <option value="personal-care">Personal Care</option>
         <option value="rice">Rice & Grains</option>
         <option value="flour">Flour & Baking</option>
-        <option value="canned">Canned & Dry</option>
+        <option value="pantry">Pantry Staples</option>
+        <option value="canned">Canned & Dry Goods</option>
         <option value="oils">Oils & Condiments</option>
+        <option value="beverages">Beverages</option>
+        <option value="household">Household</option>
+        <option value="personal-care">Personal Care</option>
       </select>
       <input id="searchInput" placeholder="Search products..." oninput="renderCatalog()" />
     </div>
@@ -65,24 +67,24 @@
     </div>
     <div>
       <strong>Shop</strong>
-      <div class="muted"><a href="shop.html?category=beverages">Beverages</a></div>
-      <div class="muted"><a href="shop.html?category=snacks">Snacks</a></div>
-      <div class="muted"><a href="shop.html?category=household">Household</a></div>
+      <div class="muted"><a href="/shop.html?category=rice">Rice & Grains</a></div>
+      <div class="muted"><a href="/shop.html?category=canned">Canned & Dry</a></div>
+      <div class="muted"><a href="/shop.html?category=household">Household</a></div>
     </div>
     <div>
       <strong>Account</strong>
-      <div class="muted"><a href="login.html">Sign in</a></div>
-      <div class="muted"><a href="account.html">Orders</a></div>
+      <div class="muted"><a href="/login.html">Sign in</a></div>
+      <div class="muted"><a href="/account.html">Orders</a></div>
     </div>
     <div>
       <strong>Contact</strong>
-      <div class="muted">Kingston, Jamaica</div>
-      <div class="muted"> WhatsApp order line active</div>
+      <div class="muted">Garlands Street, St James, Jamaica</div>
+      <div class="muted">WhatsApp order line active</div>
     </div>
   </div>
   <div class="container muted small">© <span id="year"></span> Garlands Wholesale. Demo pricing only.</div>
 </footer>
 
-<script src="js/shop.js"></script>
+<script src="/js/site.js"></script>
 </body>
 </html>
