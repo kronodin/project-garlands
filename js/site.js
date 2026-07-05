@@ -105,7 +105,8 @@ function renderCatalog() {
 
   grid.innerHTML = items
     .map((p) => {
-      const imageSrc = p.image ? p.image : null;
+      let imageSrc = p.image ? p.image : null;
+      imageSrc = imageSrc && imageSrc.startsWith("/static/") ? imageSrc.slice(1) : imageSrc;
       const imgTag = imageSrc ? `<img src="${imageSrc}" alt="${escHtml(p.name)}" loading="lazy" />` : `<span class="placeholder-icon">📦</span>`;
       return `<article class="product"><div class="product-media">${imgTag}</div><div class="product-body"><div class="category">${escHtml(p.category)}</div><h3>${escHtml(p.name)}</h3><div class="price">${fmt(p.price)} / ${escHtml(p.unit || 'unit')}</div></div><div class="product-footer"><input class="qty" id="qty-${p.id}" type="number" min="1" value="1" inputmode="numeric" /><button class="cta" onclick="addToCart(${p.id})">Add</button></div></article>`;
     })
