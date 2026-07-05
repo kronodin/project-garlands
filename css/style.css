@@ -413,6 +413,81 @@ a { color: inherit; text-decoration: none; }
 .empty-state { color: #4b5d55; padding: 18px; }
 .hidden { display: none !important; }
 
+.admin-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 28px 0 14px;
+}
+.admin-meta { opacity: 0.8; }
+.admin-toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+.admin-list { display: grid; gap: 12px; }
+.admin-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.admin-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f3f4f3;
+  background: #f9faf9;
+}
+.admin-card-body {
+  padding: 14px 16px;
+  display: grid;
+  gap: 8px;
+}
+.admin-actions select {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #143024;
+}
+.order-lines { display: grid; gap: 6px; }
+.order-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f3f4f3;
+}
+.pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #e9f5ef;
+  color: #0f4a2a;
+}
+.pill.success { background: #d1fae5; color: #14532d; }
+.pill.warn { background: #fef3c7; color: #7c4b00; }
+.pill.danger { background: #fee2e2; color: #7f1d1d; }
+.pill.pending { background: #e9f5ef; color: #0f4a2a; }
+
+@media (max-width: 860px) {
+  .admin-grid { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 860px) {
   .hero, .checkout-layout, .account-grid, .footer-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
