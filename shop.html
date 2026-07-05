@@ -4,22 +4,23 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Shop — Garlands Wholesale</title>
-<link rel="stylesheet" href="/project-garlands/css/style.css" />
+<link rel="stylesheet" href="css/style.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <header class="topbar">
   <div class="container nav">
-    <a class="logo" href="/project-garlands/">
+    <a class="logo" href="index.html">
       <img src="assets/logo.svg" alt="Garlands Wholesale" class="logo-img" />
       <span class="logo-text">Garlands Wholesale</span>
     </a>
     <nav class="nav-links">
-      <a href="/project-garlands/">Home</a>
-      <a href="/project-garlands/shop.html" class="active">Shop</a>
-      <a href="/project-garlands/account.html">Account</a>
-      <a href="/project-garlands/login.html" class="btn small">Sign in</a>
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="shop.html?category=meat">Meat & Seafood</a>
+      <a href="account.html">Account</a>
+      <a href="login.html" class="btn small">Sign in</a>
       <button class="cart-toggle" id="cartToggle" aria-label="Open cart">Cart <span class="badge" id="cartCount">0</span></button>
     </nav>
   </div>
@@ -33,7 +34,7 @@
   <div id="cartItems" class="cart-items">Cart is empty.</div>
   <div class="cart-footer">
     <div class="cart-total">Total <span id="cartTotal">0.00</span></div>
-    <a class="btn" href="/checkout.html">Checkout</a>
+    <a class="btn" href="checkout.html">Checkout</a>
   </div>
 </div>
 <div class="overlay" id="overlay"></div>
@@ -53,6 +54,8 @@
         <option value="personal-care">Personal Care</option>
         <option value="candy">Candy</option>
         <option value="liquor">Liquor</option>
+        <option value="meat">Meat & Poultry</option>
+        <option value="fish">Seafood</option>
       </select>
       <input id="searchInput" placeholder="Search products..." oninput="renderCatalog()" />
     </div>
@@ -75,9 +78,10 @@
     </div>
     <div>
       <strong>Shop</strong>
-      <div class="muted"><a href="/project-garlands/shop.html?category=rice">Rice &amp; Grains</a></div>
-      <div class="muted"><a href="/project-garlands/shop.html?category=canned">Canned &amp; Dry</a></div>
-      <div class="muted"><a href="/project-garlands/shop.html?category=household">Household</a></div>
+      <div class="muted"><a href="shop.html?category=rice">Rice & Grains</a></div>
+      <div class="muted"><a href="shop.html?category=canned">Canned & Dry</a></div>
+      <div class="muted"><a href="shop.html?category=household">Household</a></div>
+      <div class="muted"><a href="shop.html?category=meat">Meat & Seafood</a></div>
     </div>
     <div>
       <strong>Account</strong>
@@ -93,6 +97,6 @@
   <div class="container muted small">© <span id="year"></span> Garlands Wholesale. Demo pricing only.</div>
 </footer>
 
-<script src="/project-garlands/js/site.js?v=202607051402"></script>
+<script src="js/site.js?v=202607051402"></script>
 </body>
 </html>
