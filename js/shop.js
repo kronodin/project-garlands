@@ -84,7 +84,7 @@ function renderCatalog() {
   if (!grid) return;
 
   const params = new URLSearchParams(window.location.search || "");
-  const urlCat = params.get("category");
+  const urlCat = (params.get("category") || params.get("categoryFilter") || "").trim();
   let category = "";
   let search = "";
   const catEl = document.getElementById("categoryFilter");
